@@ -1,0 +1,447 @@
+problems:
+- id: two_sum
+  title: Two Sum
+  difficulty: easy
+  subtopic: arrays & hashing
+  signature: 'def two_sum(nums: list[int], target: int) -> list[int]:'
+  prompt: Return the indices [i, j] (i < j) of the two numbers that add up to target. Exactly one solution exists. Aim for O(n).
+  tests:
+  - args:
+    - - 2
+      - 7
+      - 11
+      - 15
+    - 9
+    expected:
+    - 0
+    - 1
+  - args:
+    - - 3
+      - 2
+      - 4
+    - 6
+    expected:
+    - 1
+    - 2
+  - args:
+    - - 3
+      - 3
+    - 6
+    expected:
+    - 0
+    - 1
+  - args:
+    - - -1
+      - -2
+      - -3
+      - -4
+      - -5
+    - -8
+    expected:
+    - 2
+    - 4
+  - args:
+    - - 0
+      - 4
+      - 3
+      - 0
+    - 0
+    expected:
+    - 0
+    - 3
+  skill: dsa
+- id: valid_parentheses
+  title: Valid Parentheses
+  difficulty: easy
+  subtopic: stacks & queues
+  signature: 'def valid_parentheses(s: str) -> bool:'
+  prompt: Given a string of '()[]{}', return True if every bracket is closed in the correct order.
+  tests:
+  - args:
+    - ()
+    expected: true
+  - args:
+    - ()[]{}
+    expected: true
+  - args:
+    - (]
+    expected: false
+  - args:
+    - ([)]
+    expected: false
+  - args:
+    - '{[]}'
+    expected: true
+  - args:
+    - ''
+    expected: true
+  - args:
+    - ((
+    expected: false
+  - args:
+    - ']'
+    expected: false
+  skill: dsa
+- id: merge_intervals
+  title: Merge Intervals
+  difficulty: medium
+  subtopic: intervals
+  signature: 'def merge_intervals(intervals: list[list[int]]) -> list[list[int]]:'
+  prompt: Merge all overlapping intervals and return them sorted by start. Touching intervals like [1,4],[4,5] merge.
+  tests:
+  - args:
+    - - - 1
+        - 3
+      - - 2
+        - 6
+      - - 8
+        - 10
+      - - 15
+        - 18
+    expected:
+    - - 1
+      - 6
+    - - 8
+      - 10
+    - - 15
+      - 18
+  - args:
+    - - - 1
+        - 4
+      - - 4
+        - 5
+    expected:
+    - - 1
+      - 5
+  - args:
+    - - - 1
+        - 4
+      - - 0
+        - 4
+    expected:
+    - - 0
+      - 4
+  - args:
+    - - - 1
+        - 4
+      - - 2
+        - 3
+    expected:
+    - - 1
+      - 4
+  - args:
+    - []
+    expected: []
+  - args:
+    - - - 5
+        - 6
+      - - 1
+        - 2
+    expected:
+    - - 1
+      - 2
+    - - 5
+      - 6
+  skill: dsa
+- id: top_k_frequent
+  title: Top K Frequent Elements
+  difficulty: medium
+  subtopic: heaps & priority queues
+  signature: 'def top_k_frequent(nums: list[int], k: int) -> list[int]:'
+  prompt: Return the k most frequent elements (any order). Better than O(n log n) is a bonus.
+  compare: unordered
+  tests:
+  - args:
+    - - 1
+      - 1
+      - 1
+      - 2
+      - 2
+      - 3
+    - 2
+    expected:
+    - 1
+    - 2
+  - args:
+    - - 1
+    - 1
+    expected:
+    - 1
+  - args:
+    - - 4
+      - 4
+      - 4
+      - 5
+      - 5
+      - 6
+      - 6
+      - 6
+      - 6
+    - 2
+    expected:
+    - 6
+    - 4
+  - args:
+    - - -1
+      - -1
+      - 2
+    - 1
+    expected:
+    - -1
+  skill: dsa
+- id: length_of_longest_substring
+  title: Longest Substring Without Repeating Characters
+  difficulty: medium
+  subtopic: sliding window
+  signature: 'def length_of_longest_substring(s: str) -> int:'
+  prompt: Return the length of the longest substring with all distinct characters.
+  tests:
+  - args:
+    - abcabcbb
+    expected: 3
+  - args:
+    - bbbbb
+    expected: 1
+  - args:
+    - pwwkew
+    expected: 3
+  - args:
+    - ''
+    expected: 0
+  - args:
+    - abba
+    expected: 2
+  - args:
+    - dvdf
+    expected: 3
+  skill: dsa
+- id: num_islands
+  title: Number of Islands
+  difficulty: medium
+  subtopic: graphs (BFS/DFS)
+  signature: 'def num_islands(grid: list[list[str]]) -> int:'
+  prompt: Grid of '1' (land) and '0' (water). Count islands connected horizontally/vertically.
+  tests:
+  - args:
+    - - - '1'
+        - '1'
+        - '0'
+      - - '1'
+        - '0'
+        - '0'
+      - - '0'
+        - '0'
+        - '1'
+    expected: 2
+  - args:
+    - - - '1'
+        - '1'
+        - '1'
+      - - '0'
+        - '1'
+        - '0'
+      - - '1'
+        - '1'
+        - '1'
+    expected: 1
+  - args:
+    - - - '0'
+    expected: 0
+  - args:
+    - - - '1'
+        - '0'
+        - '1'
+        - '0'
+        - '1'
+    expected: 3
+  skill: dsa
+- id: brute_force_ips
+  title: Detect Brute-Force Login IPs (security)
+  difficulty: medium
+  subtopic: sliding window
+  signature: 'def brute_force_ips(logs: list[list], threshold: int, window: int) -> list[str]:'
+  prompt: logs is a list of [timestamp_seconds, ip, status] where status is 'FAIL' or 'OK' (not necessarily sorted). Return the sorted list of
+    IPs that had at least `threshold` FAIL events within any `window`-second span (an event at t counts with events in (t-window, t]). This is
+    the core of a SOC brute-force detection rule.
+  tests:
+  - args:
+    - - - 1
+        - 10.0.0.1
+        - FAIL
+      - - 2
+        - 10.0.0.1
+        - FAIL
+      - - 3
+        - 10.0.0.1
+        - FAIL
+      - - 4
+        - 10.0.0.2
+        - FAIL
+    - 3
+    - 10
+    expected:
+    - 10.0.0.1
+  - args:
+    - - - 1
+        - a
+        - FAIL
+      - - 20
+        - a
+        - FAIL
+      - - 40
+        - a
+        - FAIL
+    - 3
+    - 30
+    expected: []
+  - args:
+    - - - 5
+        - x
+        - FAIL
+      - - 1
+        - x
+        - FAIL
+      - - 3
+        - x
+        - OK
+      - - 4
+        - x
+        - FAIL
+      - - 2
+        - y
+        - FAIL
+    - 3
+    - 5
+    expected:
+    - x
+  - args:
+    - []
+    - 2
+    - 10
+    expected: []
+  - args:
+    - - - 0
+        - z
+        - FAIL
+      - - 10
+        - z
+        - FAIL
+    - 2
+    - 10
+    expected: []
+  skill: dsa
+- id: rbac_can_access
+  title: RBAC Permission Check with Role Inheritance (IAM)
+  difficulty: medium
+  subtopic: graphs (BFS/DFS)
+  signature: 'def rbac_can_access(role_parents: dict, role_perms: dict, user_roles: list[str], permission: str) -> bool:'
+  prompt: 'role_parents maps a role to roles it inherits from; role_perms maps a role to its direct permissions. Return True if any of the user''s
+    roles grants `permission` directly or through inheritance. The hierarchy may contain cycles: don''t loop forever.'
+  tests:
+  - args:
+    - admin:
+      - editor
+      editor:
+      - viewer
+    - viewer:
+      - read
+      editor:
+      - write
+      admin:
+      - delete
+    - - admin
+    - read
+    expected: true
+  - args:
+    - admin:
+      - editor
+      editor:
+      - viewer
+    - viewer:
+      - read
+      editor:
+      - write
+    - - viewer
+    - write
+    expected: false
+  - args:
+    - a:
+      - b
+      b:
+      - a
+    - a: []
+      b: []
+    - - a
+    - x
+    expected: false
+  - args:
+    - {}
+    - auditor:
+      - read_logs
+    - - dev
+      - auditor
+    - read_logs
+    expected: true
+  - args:
+    - a:
+      - b
+      b:
+      - c
+      c:
+      - a
+    - c:
+      - deploy
+    - - a
+    - deploy
+    expected: true
+  skill: dsa
+- id: rolling_zscore_anomalies
+  title: Rolling Z-Score Anomaly Detector (vitals)
+  difficulty: medium
+  subtopic: arrays & hashing
+  signature: 'def rolling_zscore_anomalies(values: list[float], window: int, threshold: float) -> list[int]:'
+  prompt: For each index i >= window, compute the mean and POPULATION std of the previous `window` values (values[i-window:i]). Return indices
+    where std > 0 and |values[i]-mean|/std > threshold. Think of values as a patient's heart-rate stream.
+  tests:
+  - args:
+    - - 80
+      - 82
+      - 81
+      - 79
+      - 80
+      - 120
+      - 81
+      - 80
+    - 4
+    - 3.0
+    expected:
+    - 5
+  - args:
+    - - 1
+      - 1
+      - 1
+      - 1
+      - 5
+    - 3
+    - 2.0
+    expected: []
+  - args:
+    - - 10
+      - 11
+      - 10
+      - 11
+      - 10
+      - 11
+      - 30
+      - 11
+    - 3
+    - 2.5
+    expected:
+    - 6
+  - args:
+    - - 5
+      - 6
+    - 3
+    - 1.0
+    expected: []
+  skill: dsa

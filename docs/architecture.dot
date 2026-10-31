@@ -1,0 +1,45 @@
+digraph G {
+  graph [rankdir=LR, fontname="Helvetica", fontsize=20, labelloc=t, label="nextLevelPersonalCoachForCareerLevel: Architecture", pad=0.4, nodesep=0.35, ranksep=0.55, bgcolor="white", compound=true];
+  node  [fontname="Helvetica", fontsize=12, shape=box, style="rounded,filled", fillcolor="#F4F6FA", color="#5B6B8C"];
+  edge  [fontname="Helvetica", fontsize=10, color="#5B6B8C"];
+
+  user [label="Anshita\n(Streamlit UI / CLI)", shape=ellipse, fillcolor="#FFF4D6", color="#C99A2E"];
+
+  subgraph cluster_iv {
+    label="Mock-interview agent: LangGraph + human-in-the-loop (agent/interview.py)"; style="rounded,dashed"; color="#2F6FDB"; fontcolor="#2F6FDB";
+    p [label="plan_session\nrole weight × skill gap ×\nuncertainty (+ JD focus)\n→ adaptive difficulty"];
+    a [label="ask_question\npersonalized to projects\n/ target JD, no repeats"];
+    w [label="await_answer\npauses: interrupt()", fillcolor="#FFF4D6", color="#C99A2E"];
+    e [label="evaluate_answer\nFAANG rubric 0–10\n→ mastery update"];
+    f [label="follow_up\nprobe biggest gap"];
+    u [label="wrap_up\ndebrief + transcript"];
+    p -> a -> w -> e;
+    e -> f [label="score < 7"]; f -> w;
+    e -> a [label="next"]; e -> u [label="done"];
+  }
+
+  subgraph cluster_mod {
+    label="Other agent capabilities"; style="rounded"; color="#8E5BB5"; fontcolor="#8E5BB5";
+    opp [label="Opportunity scout\nSimplify internship list · Greenhouse ·\nLever · Ashby · Adzuna (opt) · arXiv\n→ filters → heuristic + LLM fit"];
+    jd [label="JD analyzer\nrequirements → taxonomy →\ngap analysis · resume keywords"];
+    code [label="Coding lab\nsandboxed test runner +\nLLM code review +\nself-verified problem generator"];
+    rep [label="Readiness report\nreadiness · skill table · gaps ·\nresources · 14-day plan\n(.md + .docx)"];
+  }
+
+  subgraph cluster_llm { label="LLM layer"; style="rounded"; color="#E07A00"; fontcolor="#E07A00";
+    llm [label="Gemini → Groq → Cohere →\nOpenRouter → Ollama\n(automatic fallback)", fillcolor="#FFF0E0", color="#E07A00"]; }
+
+  subgraph cluster_mem { label="Memory & knowledge"; style="rounded"; color="#2E7D32"; fontcolor="#2E7D32";
+    cfg [label="config/\nprofile · targets & skill weights ·\nskill taxonomy + resources ·\ncoding problems · sources", shape=note, fillcolor="#E8F5E9"];
+    db [label="SQLite coach.db\nmastery · mastery_history · answers ·\nsessions · coding_attempts ·\nopportunities · jd_analyses · reports", shape=cylinder, fillcolor="#E8F5E9"]; }
+
+  ev [label="Evaluation\ngrader calibration (MAE, Spearman, drift) ·\nquestion relevance · follow-up gain ·\nopportunity precision · score & readiness trend", shape=note, fillcolor="#FFF4D6", color="#C99A2E"];
+
+  user -> p [label="start session"];
+  user -> w [label="answers", style=dashed];
+  user -> opp; user -> jd; user -> code; user -> rep;
+  jd -> p [label="tailor interview", style=dashed];
+  a -> llm; e -> llm; u -> llm; opp -> llm; jd -> llm; code -> llm; rep -> llm;
+  cfg -> p; e -> db; code -> db; opp -> db; jd -> db; db -> rep; db -> p; db -> ev;
+  rep -> user [label="Career Readiness Report"];
+}

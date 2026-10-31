@@ -1,0 +1,63 @@
+# ---------------------------------------------------------------------------
+# Skill taxonomy: what the coach assesses, the subtopics it rotates through,
+# and free, reputable resources it recommends for gaps.
+# ---------------------------------------------------------------------------
+dsa:
+  label: Data Structures & Algorithms
+  subtopics: [arrays & hashing, two pointers, sliding window, stacks & queues, binary search, linked lists,
+              trees & BST, graphs (BFS/DFS), heaps & priority queues, dynamic programming, intervals, complexity analysis]
+  resources:
+    - {title: "NeetCode 150 roadmap", url: "https://neetcode.io/roadmap"}
+    - {title: "LeetCode Top Interview 150", url: "https://leetcode.com/studyplan/top-interview-150/"}
+    - {title: "Tech Interview Handbook: coding interview prep", url: "https://www.techinterviewhandbook.org/coding-interview-prep/"}
+ml_theory:
+  label: ML Theory & Deep Learning
+  subtopics: [bias-variance & regularization, optimization & gradient descent, evaluation metrics for imbalanced data,
+              tree ensembles & boosting, attention & Transformers, sequence models & time series, overfitting & validation,
+              missing data & imputation, anomaly detection, loss functions & calibration]
+  resources:
+    - {title: "Dive into Deep Learning (free book)", url: "https://d2l.ai/"}
+    - {title: "Stanford CS229 lecture notes", url: "https://cs229.stanford.edu/main_notes.pdf"}
+    - {title: "Chip Huyen: ML Interviews Book", url: "https://huyenchip.com/ml-interviews-book/"}
+ml_system_design:
+  label: ML System Design & MLOps
+  subtopics: [problem framing & metrics, data pipelines & labeling, feature engineering & feature stores,
+              training vs serving skew, offline vs online evaluation, A/B testing, model monitoring & drift,
+              latency/cost trade-offs, retraining strategy, design a real-time anomaly/fraud detector]
+  resources:
+    - {title: "Made With ML (MLOps course)", url: "https://madewithml.com/"}
+    - {title: "Chip Huyen: Designing ML Systems (summary notes)", url: "https://huyenchip.com/machine-learning-systems-design/toc.html"}
+    - {title: "Google: Rules of Machine Learning", url: "https://developers.google.com/machine-learning/guides/rules-of-ml"}
+llm_agents:
+  label: LLMs, RAG & Agents
+  subtopics: [Transformer internals & tokenization, RAG design & chunking, embeddings & vector search, tool use & function calling,
+              agent architectures (LangGraph), hallucination & grounding, LLM evaluation, fine-tuning vs prompting, prompt injection risks]
+  resources:
+    - {title: "LangGraph documentation", url: "https://langchain-ai.github.io/langgraph/"}
+    - {title: "Anthropic: Building effective agents", url: "https://www.anthropic.com/engineering/building-effective-agents"}
+    - {title: "Hugging Face LLM Course", url: "https://huggingface.co/learn/llm-course"}
+security_fundamentals:
+  label: Security Fundamentals
+  subtopics: [CIA triad & threat modeling, TCP/IP, DNS & TLS handshake, OWASP Top 10 web vulnerabilities, cryptography basics (hashing vs encryption),
+              common attacks (phishing, XSS, SQLi, CSRF), logging, SIEM & alert triage, incident response lifecycle,
+              MITRE ATT&CK, vulnerability management & CVSS, malware & lateral movement]
+  resources:
+    - {title: "OWASP Top 10", url: "https://owasp.org/www-project-top-ten/"}
+    - {title: "MITRE ATT&CK", url: "https://attack.mitre.org/"}
+    - {title: "TryHackMe SOC Level 1 path", url: "https://tryhackme.com/path/outline/soclevel1"}
+    - {title: "NIST SP 800-61 Incident Handling Guide", url: "https://csrc.nist.gov/pubs/sp/800/61/r3/final"}
+iam_cloud_security:
+  label: IAM & Cloud Security
+  subtopics: [authentication vs authorization, RBAC vs ABAC vs ReBAC, OAuth 2.0 & OIDC flows, SAML & SSO, JWT pitfalls,
+              least privilege & privilege escalation, MFA & phishing-resistant auth, AWS IAM policies & roles, zero trust architecture, secrets management]
+  resources:
+    - {title: "AWS IAM security best practices", url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html"}
+    - {title: "OAuth 2.0 Simplified", url: "https://www.oauth.com/"}
+    - {title: "NIST SP 800-207 Zero Trust Architecture", url: "https://csrc.nist.gov/pubs/sp/800/207/final"}
+behavioral:
+  label: Behavioral & Communication
+  subtopics: [tell me about yourself, a project you're proud of, conflict with a teammate, leading without authority,
+              a failure and what you learned, handling ambiguity, tight deadline trade-offs, explaining a technical idea to a non-expert, why this company/role]
+  resources:
+    - {title: "Tech Interview Handbook: behavioral interviews", url: "https://www.techinterviewhandbook.org/behavioral-interview/"}
+    - {title: "Amazon Leadership Principles", url: "https://www.amazon.jobs/content/en/our-workplace/leadership-principles"}

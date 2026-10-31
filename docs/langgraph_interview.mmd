@@ -1,0 +1,26 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	plan_session(plan_session)
+	ask_question(ask_question)
+	await_answer(await_answer)
+	evaluate_answer(evaluate_answer)
+	follow_up(follow_up)
+	wrap_up(wrap_up)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> plan_session;
+	ask_question --> await_answer;
+	await_answer --> evaluate_answer;
+	evaluate_answer -.-> ask_question;
+	evaluate_answer -.-> follow_up;
+	evaluate_answer -.-> wrap_up;
+	follow_up --> await_answer;
+	plan_session --> ask_question;
+	wrap_up --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

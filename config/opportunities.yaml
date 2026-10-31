@@ -1,0 +1,63 @@
+# ---------------------------------------------------------------------------
+# Where the coach looks for opportunities. All free; none need an API key
+# except the optional Adzuna search (free key at developer.adzuna.com).
+# A source that fails shows in the "Source health" panel; just fix or remove it.
+# ---------------------------------------------------------------------------
+
+# 1) Community-maintained internship list (covers Big Tech, security, AI, health-tech).
+#    The coach tries each repo in order until one loads.
+simplify_internships:
+  repos: [SimplifyJobs/Summer2027-Internships, SimplifyJobs/Summer2026-Internships]
+  branches: [dev, main]
+
+# 2) Company job boards with public JSON APIs.
+#    Find a slug in the company's careers URL, e.g. boards.greenhouse.io/<slug>, jobs.lever.co/<slug>, jobs.ashbyhq.com/<slug>
+companies:
+  ai_startups_labs:
+    greenhouse: [anthropic, scaleai, databricks]
+    ashby: [openai, cohere]
+  big_tech:
+    greenhouse: [airbnb, pinterest, stripe, dropbox]
+    lever: [palantir]
+  security:
+    greenhouse: [okta, cloudflare, datadog]
+  healthcare_healthtech:
+    greenhouse: [flatironhealth]
+
+# 3) Big Tech & security companies without public APIs: quick links opened from the app.
+#    Paste any posting into the JD Analyzer to get a fit score and a tailored mock interview.
+career_links:
+  Google: "https://www.google.com/about/careers/applications/jobs/results/?q=intern"
+  Microsoft: "https://jobs.careers.microsoft.com/global/en/search?q=intern"
+  Amazon: "https://www.amazon.jobs/en/search?base_query=intern"
+  Meta: "https://www.metacareers.com/jobs?q=intern"
+  Apple: "https://jobs.apple.com/en-us/search?search=intern"
+  NVIDIA: "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite?q=intern"
+  IBM: "https://www.ibm.com/careers/search?q=intern"
+  Palo Alto Networks: "https://jobs.paloaltonetworks.com/en/search-jobs/intern"
+  CrowdStrike: "https://crowdstrike.wd5.myworkdayjobs.com/crowdstrikecareers?q=intern"
+  Cisco: "https://jobs.cisco.com/jobs/SearchJobs/intern"
+  SJSU Handshake: "https://sjsu.joinhandshake.com/"
+
+# 4) Optional broad search (needs ADZUNA_APP_ID + ADZUNA_APP_KEY in .env)
+adzuna:
+  country: us
+  where: San Jose, California
+  queries: [machine learning intern, security intern, AI engineer intern]
+
+# 5) Research + entrepreneurial opportunities (curated; check dates on each site)
+research_queries:          # recent arXiv papers → ideas for research projects / faculty outreach
+  - "cat:cs.LG AND (abs:sepsis OR abs:clinical time series OR abs:EHR)"
+  - "cat:cs.CR AND (abs:LLM OR abs:access control)"
+  - "cat:cs.AI AND abs:agent AND abs:evaluation"
+programs:
+  - {name: "SJSU faculty research (RA / independent study)", type: research, url: "https://www.sjsu.edu/cmpe/", note: "Email faculty whose recent papers match your sepsis / security interests; attach a one-page research summary."}
+  - {name: "PhysioNet / Computing in Cardiology Challenge", type: research, url: "https://physionet.org/about/challenge/", note: "Annual clinical-ML challenge. Direct continuation of your PhysioNet 2019 sepsis work."}
+  - {name: "Kaggle competitions", type: research, url: "https://www.kaggle.com/competitions", note: "Public leaderboard = verifiable ML signal on a resume."}
+  - {name: "CTFtime: upcoming CTF competitions", type: security, url: "https://ctftime.org/event/list/upcoming", note: "Security internship signal; pairs with TryHackMe."}
+  - {name: "HackerOne bug bounty programs", type: security, url: "https://hackerone.com/directory/programs", note: "Real findings beat certificates for AppSec roles."}
+  - {name: "MLH / Devpost hackathons", type: entrepreneurial, url: "https://devpost.com/hackathons", note: "Ship an agent prototype in a weekend; good for demos and networking."}
+  - {name: "Y Combinator", type: entrepreneurial, url: "https://www.ycombinator.com/apply", note: "Benchmark for startup readiness; read the application questions even if not applying."}
+  - {name: "AWS Activate (startup credits)", type: entrepreneurial, url: "https://aws.amazon.com/activate/", note: "Cloud credits for prototypes."}
+  - {name: "Google for Startups", type: entrepreneurial, url: "https://startup.google.com/", note: "Programs + cloud credits."}
+  - {name: "Microsoft for Startups", type: entrepreneurial, url: "https://www.microsoft.com/en-us/startups", note: "Azure credits + OpenAI access for founders."}

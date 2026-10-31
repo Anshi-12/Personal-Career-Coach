@@ -1,0 +1,7 @@
+{"jobs": [
+ {"id": "j1", "title": "Machine Learning Engineer Intern (Summer 2027)", "company": "TestAI", "location": "San Jose, CA", "url": "https://example.com/j1", "source": "test", "category": "ai", "posted": null, "description": "TEST FIXTURE. Python, PyTorch, Transformers, anomaly detection."},
+ {"id": "j2", "title": "Security Engineering Intern", "company": "TestSec", "location": "Remote", "url": "https://example.com/j2", "source": "test", "category": "security", "posted": null, "description": "TEST FIXTURE. IAM, RBAC, Kali Linux, SIEM."},
+ {"id": "j3", "title": "Senior Machine Learning Engineer", "company": "TestAI", "location": "San Jose, CA", "url": "https://example.com/j3", "source": "test", "category": "ai", "posted": null, "description": "TEST FIXTURE. not an internship"},
+ {"id": "j4", "title": "Cyber Security Intern", "company": "TestGov", "location": "VA", "url": "https://example.com/j4", "source": "test", "category": "security", "posted": null, "description": "TEST FIXTURE. U.S. citizenship required. Security clearance."},
+ {"id": "j5", "title": "Marketing Intern", "company": "TestMkt", "location": "San Jose, CA", "url": "https://example.com/j5", "source": "test", "category": "x", "posted": null, "description": "TEST FIXTURE."}
+]}

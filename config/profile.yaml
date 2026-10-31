@@ -1,0 +1,53 @@
+# ---------------------------------------------------------------------------
+# Candidate profile: the coach personalizes questions, scoring and plans from this.
+# ---------------------------------------------------------------------------
+name: Anshita Shah
+program: MSSE (Master of Science in Software Engineering), San José State University
+graduation: "2028"           # edit if different
+location: San Jose, CA
+target_season: Summer 2027
+preferred_locations: [San Jose, Santa Clara, Sunnyvale, Mountain View, San Francisco, Bay Area, Remote, California]
+
+# Coach behaviour
+coach_style: faang_strict      # faang_strict | tough_fair | supportive
+questions_per_session: 6
+max_followups_per_question: 1  # strict coaches probe weak answers once before moving on
+
+# Target roles → how much each skill matters (weights are normalized automatically)
+targets:
+  ml_ai_intern:
+    label: ML/AI Engineering Intern
+    title_keywords: [machine learning, ml, ai, artificial intelligence, deep learning, data scien, applied scien, llm, nlp, computer vision, research intern]
+    skills: {dsa: 0.25, ml_theory: 0.25, ml_system_design: 0.15, llm_agents: 0.15, behavioral: 0.20}
+  security_intern:
+    label: Cybersecurity / Security Engineering Intern
+    title_keywords: [security, cyber, soc, iam, identity, threat, detection, appsec, infosec, vulnerability, incident]
+    skills: {dsa: 0.20, security_fundamentals: 0.30, iam_cloud_security: 0.25, behavioral: 0.25}
+
+# Starting self-assessment (0–1). The coach overwrites these as you answer questions.
+# Be honest: low priors just mean the coach starts with easier questions.
+initial_mastery:
+  dsa: 0.40
+  ml_theory: 0.60
+  ml_system_design: 0.35
+  llm_agents: 0.50
+  security_fundamentals: 0.45
+  iam_cloud_security: 0.55
+  behavioral: 0.50
+
+# Experience the coach uses for behavioral questions, resume probing and "tell me about…" scenarios
+experience:
+  - "TCS internship: built React.js analytics dashboards with three-tier RBAC on the HOBS CPQ platform (MariaDB, Circuit API, DEV/SIT/UAT/PROD environments)"
+  - "IEEE CS Bangalore IAMPro 2026 research internship: Transformer-based early sepsis detection on the PhysioNet 2019 dataset, modelling missingness patterns; co-authoring a paper"
+  - "Brainybeam: XGBoost customer-churn prediction on a telecom dataset"
+  - "IEEE GCET Student Branch: Computer Society Chairperson & Treasurer (2025), SIGHT Vice Chair & Joint Secretary (2024); ran IEEE Day, AI Crucible and the Nexorae flagship event with a 24-hour hackathon; managed budgets and volunteers"
+  - "TryHackMe SOC Level 1 training: alert triage and classification; Kali Linux experience"
+  - "SJSU coursework: CMPE 256 agentic AI consulting platform, CMPE 272 enterprise project (Ansible, Jenkins, Salesforce), CMPE 255 data mining"
+  - "IEEE Richard E. Merwin Scholar (2024); CGPA 9.33 in Computer Engineering (GCET)"
+skills: [Python, PyTorch, Transformers, anomaly detection, XGBoost, scikit-learn, React.js, MariaDB, SQL, RBAC/IAM, Kali Linux, Ansible, Jenkins, Git, LangGraph]
+
+# Opportunity filters
+opportunity_filters:
+  internships_only: true
+  exclude_us_citizenship_required: true   # many security/defense roles require US citizenship or clearance
+  max_age_days: 45

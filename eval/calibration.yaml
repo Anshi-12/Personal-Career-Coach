@@ -1,0 +1,81 @@
+# Grader calibration set: reference answers with the score range a human interviewer would give.
+# `python -m eval.run_calibration` grades each answer twice with the live LLM grader and reports
+# accuracy (MAE, % inside range), ranking agreement (Spearman) and consistency (re-grade drift).
+items:
+  - id: ml_auroc_strong
+    skill: ml_theory
+    difficulty: medium
+    question: "For an ICU sepsis early-warning model where only about 2% of patient-hours are positive, why can AUROC be misleading, and what would you report instead?"
+    expected_points: ["AUROC is insensitive to class imbalance because FPR uses the large negative class", "high AUROC can coexist with low precision / many false alarms", "report AUPRC / precision at fixed recall", "alarm burden / alerts per patient-day, lead time before onset", "calibration and threshold choice tied to clinical cost"]
+    answer: "AUROC measures ranking across all thresholds and the false-positive rate is normalized by the huge negative class, so with 2% prevalence a model can show 0.90 AUROC while most alerts are false. Clinicians feel precision, not FPR. I'd report AUPRC against the 0.02 baseline, precision and sensitivity at an operating threshold chosen with clinicians, alarms per patient-day to quantify alert fatigue, and median lead time before onset since early detection is the goal. I'd also check calibration, because a threshold on a miscalibrated score drifts across hospitals, and use patient-level splits to avoid leakage."
+    expected_range: [8, 10]
+  - id: ml_auroc_medium
+    skill: ml_theory
+    difficulty: medium
+    question: "For an ICU sepsis early-warning model where only about 2% of patient-hours are positive, why can AUROC be misleading, and what would you report instead?"
+    expected_points: ["AUROC is insensitive to class imbalance", "report AUPRC / precision", "alarm burden", "lead time", "calibration"]
+    answer: "Because the data is imbalanced, AUROC can look good even if the model is not that useful. I would use precision-recall AUC and F1 score instead."
+    expected_range: [3, 6]
+  - id: ml_auroc_wrong
+    skill: ml_theory
+    difficulty: medium
+    question: "For an ICU sepsis early-warning model where only about 2% of patient-hours are positive, why can AUROC be misleading, and what would you report instead?"
+    expected_points: ["AUROC is insensitive to class imbalance", "report AUPRC / precision", "alarm burden"]
+    answer: "AUROC is actually the best metric for imbalanced data, so it is not misleading. I would report accuracy as well since it is easy to explain."
+    expected_range: [0, 2]
+  - id: iam_strong
+    skill: iam_cloud_security
+    difficulty: medium
+    question: "Explain authentication vs authorization, and when you would choose ABAC over RBAC."
+    expected_points: ["authN verifies identity, authZ decides permitted actions", "RBAC assigns permissions to roles", "role explosion problem", "ABAC evaluates attributes of user/resource/environment", "ABAC for fine-grained/contextual rules, trade-off: complexity/auditability"]
+    answer: "Authentication proves who you are, for example password plus MFA or an OIDC ID token. Authorization decides what that identity may do, for example an access token's scopes checked by a policy engine. RBAC maps users to roles and roles to permissions; it's simple to audit, which is why I used three tiers at TCS. It breaks down when access depends on context: 'doctors can read records only for patients in their ward during their shift' would need a role per ward and shift, which is role explosion. ABAC evaluates policies over user, resource and environment attributes, so that rule is one policy. The trade-off is that ABAC policies are harder to test and audit, so many systems use RBAC for coarse grants and ABAC conditions on top."
+    expected_range: [8, 10]
+  - id: iam_weak
+    skill: iam_cloud_security
+    difficulty: medium
+    question: "Explain authentication vs authorization, and when you would choose ABAC over RBAC."
+    expected_points: ["authN vs authZ", "RBAC", "ABAC", "role explosion", "trade-offs"]
+    answer: "Authentication and authorization are both about security and logging in. RBAC is role based and ABAC is attribute based. ABAC is newer so it's better."
+    expected_range: [1, 4]
+  - id: dsa_cycle_optimal
+    skill: dsa
+    difficulty: easy
+    question: "How would you detect whether a singly linked list has a cycle? Give time and space complexity."
+    expected_points: ["Floyd's tortoise and hare", "fast pointer moves 2, slow 1, meet iff cycle", "O(n) time, O(1) space", "handle empty / single node"]
+    answer: "Use Floyd's algorithm: slow moves one node, fast moves two. If fast or fast.next becomes null there's no cycle; if they ever point to the same node there is one, because inside the cycle the gap shrinks by one each step. O(n) time and O(1) space. Empty list or a single node without a self-loop returns false. Alternatively a hash set of visited nodes works in O(n) space."
+    expected_range: [8, 10]
+  - id: dsa_cycle_set
+    skill: dsa
+    difficulty: easy
+    question: "How would you detect whether a singly linked list has a cycle? Give time and space complexity."
+    expected_points: ["Floyd's tortoise and hare", "O(n) time, O(1) space"]
+    answer: "I would store every visited node in a set and if I see a node again there is a cycle. That is O(n) time."
+    expected_range: [4, 6]
+  - id: sec_xss_medium
+    skill: security_fundamentals
+    difficulty: medium
+    question: "What is the difference between stored and reflected XSS, and how do you prevent XSS?"
+    expected_points: ["stored: payload persisted server-side, served to other users", "reflected: payload in request echoed back", "context-aware output encoding", "CSP", "input validation is secondary; HttpOnly cookies limit impact"]
+    answer: "Stored XSS is when the malicious script is saved in the database, like in a comment, and runs for everyone who views it. Reflected XSS comes from the URL and is reflected back in the response, so the victim has to click a crafted link. To prevent it you should sanitize user input."
+    expected_range: [4, 6]
+  - id: beh_strong
+    skill: behavioral
+    difficulty: medium
+    question: "Tell me about a time you led a team under a tight deadline."
+    expected_points: ["specific situation", "own actions", "prioritization", "measurable result", "reflection"]
+    answer: "As IEEE Computer Society Chairperson, two weeks before our Nexorae flagship event with a 24-hour hackathon our venue sponsor pulled out. I owned the recovery: I split the 20 volunteers into venue, sponsorship and logistics pods with daily 15-minute stand-ups, personally renegotiated with two local sponsors, and cut two low-value sessions to protect the hackathon. We secured a new venue within five days, stayed within the reduced budget I managed as Treasurer, and ran the event on schedule. In hindsight I'd have built a contingency venue into the plan from the start, which I now do."
+    expected_range: [8, 10]
+  - id: beh_vague
+    skill: behavioral
+    difficulty: medium
+    question: "Tell me about a time you led a team under a tight deadline."
+    expected_points: ["specific situation", "own actions", "result"]
+    answer: "We had a lot of deadlines in college and we always worked hard as a team and managed to finish on time."
+    expected_range: [0, 3]
+  - id: skip
+    skill: ml_system_design
+    difficulty: medium
+    question: "Design a real-time fraud detection system for card payments."
+    expected_points: ["latency budget", "features", "model", "monitoring"]
+    answer: "skip"
+    expected_range: [0, 1]
